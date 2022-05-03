@@ -81,11 +81,15 @@ func main() {
 
 			access_token := c.Query("access_token")
 			receiver := c.Query("receiver")
-			fmt.Println(access_token, receiver)
 
-			receiverConfig, err := sc.GetConfigByName("default")
+			receiverConfig, err := sc.GetConfigByName(receiver)
 			if err != nil {
-				c.JSON(200, gin.H{"ret": "-1", "msg": "invalid data"})
+				c.JSON(200, gin.H{"ret": "-1", "msg": "receiver not exists"})
+				return
+			}
+
+			if access_token != receiverConfig.AccessToken {
+				c.JSON(200, gin.H{"ret": "-1", "msg": "invaild access_token"})
 				return
 			}
 

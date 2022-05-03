@@ -1,4 +1,4 @@
 receivers:
-  default:
+  idcteam:
     access_token: 91372eba6cdef09f6d8453752cf47011bf32cb7a
     fsurl: "https://open.feishu.cn/open-apis/bot/v2/hook/de30801b-f747-48e2-99ce-39d8dd8d2eaf"
