@@ -1,2 +1,2 @@
-# prometheus-webhook-feish
+# alertmanager-webhook-feish
 Feish webhook for Prometheus Alertmanager
