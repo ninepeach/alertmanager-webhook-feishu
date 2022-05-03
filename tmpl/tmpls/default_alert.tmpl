@@ -1,0 +1,4 @@
+{{if in .Annotations "summary"}}**{{.Annotations.summary}}** {{end}}
+{{if in .Annotations "description"}}{{.Annotations.description}}{{- end}}
+{{if isNonZeroDate .StartsAt}}{{date .StartsAt "Asia/Shanghai" }} ~{{end -}}
+{{- if isNonZeroDate .EndsAt}} {{date .EndsAt "Asia/Shanghai"}}{{else}} TO BE RESOLVED{{end -}}

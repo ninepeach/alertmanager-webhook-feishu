@@ -1,0 +1,60 @@
+{
+  "receiver": "feishu",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "BlackboxProbeFailed",
+        "idc": "CaoHeJing",
+        "instance": "10.20.32.100",
+        "job": "blackbox-ping",
+        "model": "dell",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "Probe failed\n  VALUE = 0\n  LABELS = map[__name__:probe_success idc:CaoHeJing instance:10.20.32.100 job:blackbox-ping model:dell]",
+        "summary": "Blackbox probe failed (instance 10.20.32.100)"
+      },
+      "startsAt": "2022-05-03T13:23:33.937Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://StoneMBP.local:9090/graph?g0.expr=probe_success+%3D%3D+0&g0.tab=1",
+      "fingerprint": "131f372b19889e33"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "BlackboxProbeFailed",
+        "idc": "CaoHeJing",
+        "instance": "10.20.39.4",
+        "job": "blackbox-ping",
+        "model": "dell",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "Probe failed\n  VALUE = 0\n  LABELS = map[__name__:probe_success idc:CaoHeJing instance:10.20.39.4 job:blackbox-ping model:dell]",
+        "summary": "Blackbox probe failed (instance 10.20.39.4)"
+      },
+      "startsAt": "2022-05-03T13:23:03.937Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://StoneMBP.local:9090/graph?g0.expr=probe_success+%3D%3D+0&g0.tab=1",
+      "fingerprint": "88bf21371a9ea651"
+    }
+  ],
+  "groupLabels": {
+    "alertname": "BlackboxProbeFailed",
+    "idc": "CaoHeJing"
+  },
+  "commonLabels": {
+    "alertname": "BlackboxProbeFailed",
+    "idc": "CaoHeJing",
+    "job": "blackbox-ping",
+    "model": "dell",
+    "severity": "critical"
+  },
+  "commonAnnotations": {},
+  "externalURL": "http://StoneMBP.local:9093",
+  "version": "4",
+  "groupKey": "{}:{alertname=\"BlackboxProbeFailed\", idc=\"CaoHeJing\"}",
+  "truncatedAlerts": 0
+}

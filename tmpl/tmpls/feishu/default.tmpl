@@ -1,0 +1,51 @@
+{{- /*gotype: github.com/xujiahua/alertmanager-webhook-feishu/model.WebhookMessage*/ -}}
+{
+    "msg_type": "interactive",
+    "card":
+    {
+        "header": {
+            "title":
+            {
+                "tag": "plain_text",
+                "content": "{{.TitlePrefix}}{{if in .GroupLabels "alertname"}}{{.GroupLabels.alertname}} {{end}}{{if len             .FiringAlerts}}[{{len     .FiringAlerts}}] Firing {{end}}{{if len .ResolvedAlerts}}[{{len .ResolvedAlerts}}]     Resolved{{end}}"
+            },
+            "template":"{{if len .FiringAlerts}}red{{else}}green{{end}}"
+        },
+        
+        "elements": [
+            {{range .FiringAlerts}}
+                {
+                    "tag": "div",
+                    "text": {
+                    "tag": "lark_md",
+                    "content": "{{.}}"
+                }
+                },
+                {
+                    "tag": "hr"
+                },
+            {{ end }}
+            {{ range .ResolvedAlerts }}
+                {
+                    "tag": "div",
+                    "text": {
+                        "tag": "lark_md",
+                        "content": "{{.}}"
+                    }
+                },
+                {
+                    "tag": "hr"
+                },
+            {{ end }}
+            
+            {
+              "tag": "note",
+              "elements": 
+              [{
+                "tag": "lark_md",
+                "content": "{{range .Meta.SortedPairs}}{{ displayKV .Name .Value}}\t{{end}}{{range .OpenIDs}}<at id={{.}}></at> {{end}}"
+              }]
+            }
+        ]
+    }
+}

@@ -1,0 +1,116 @@
+{
+    "msg_type": "interactive",
+    "card":
+    {
+        "header": {
+            "title":
+            {
+                "tag": "plain_text",
+                "i18n": {
+                    "zh_cn": " {{if in .GroupLabels "job"}}[{{.GroupLabels.job}}] {{end}}{{if len .FiringAlerts}}故障({{len .FiringAlerts}}) {{.Severity}}{{end}} {{if len .ResolvedAlerts}}恢复({{len .ResolvedAlerts}}){{end}}",
+                    "en_us": " {{if in .GroupLabels "job"}}[{{.GroupLabels.job}}] {{end}}{{if len .FiringAlerts}}Firing({{len .FiringAlerts}}) {{.Severity}}{{end}} {{if len .ResolvedAlerts}}Resolved({{len .ResolvedAlerts}}){{end}}"
+                }
+            },
+            "template":"{{if len .FiringAlerts}}{{if (eq .Severity "warning") }}yellow{{else}}red{{end}}{{else}}green{{end}}"
+        },
+        
+        "i18n_elements": {
+            "en_us": [
+                {{- /* en_us start*/ -}}
+                {
+                    "tag": "div",
+                    "text": {
+                        "tag": "lark_md",
+                        "content": "**Alert Server Summury**\n{{ range $key, $value := .AlertHosts }}[{{ $key }}] : {{ $value }}\n{{ end }}"
+                    }
+                },
+                {
+                    "tag": "hr"
+                },
+                {{range .FiringAlerts}}
+                {
+                    "tag": "div",
+                    "text": {
+                        "tag": "lark_md",
+                        "content": "{{if in .Labels "severity"}}**Severity : **{{.Labels.severity}}\n{{end}}{{if in .Labels "hostname"}}**Host : **{{.Labels.hostname}} {{end}}\n{{if in .Labels "instance"}}**Instance : **{{.Labels.instance}} \n{{end}}{{if in .Labels "alertname"}}**AlertName : **{{.Labels.alertname}} \n{{end}}{{if in .Annotations "alertmsg"}}**Summary : **{{.Annotations.alertmsg}} \n{{end}}{{if isNonZeroDate .StartsAt}}**Start : **{{date .StartsAt "Asia/Shanghai" }}\n{{end -}}{{- if isNonZeroDate .EndsAt}}**End : **{{date .EndsAt "Asia/Shanghai"}}\n{{else}} TO BE RESOLVED{{end -}}"
+                    }
+                },
+                {
+                    "tag": "hr"
+                },
+                {{ end }}
+                {{ range .ResolvedAlerts }}
+                {
+                    "tag": "div",
+                    "text": {
+                        "tag": "lark_md",
+                       "content": "{{if in .Labels "severity"}}**Severity : **{{.Labels.severity}}\n{{end}}{{if in .Labels "hostname"}}**Host : **{{.Labels.hostname}} {{end}}\n{{if in .Labels "instance"}}**Instance : **{{.Labels.instance}} \n{{end}}{{if in .Labels "alertname"}}**AlertName : **{{.Labels.alertname}} \n{{end}}{{if in .Annotations "alertmsg"}}**Summary : **{{.Annotations.alertmsg}} \n{{end}}{{if isNonZeroDate .StartsAt}}**Start : **{{date .StartsAt "Asia/Shanghai" }}\n{{end -}}{{- if isNonZeroDate .EndsAt}}**End : **{{date .EndsAt "Asia/Shanghai"}}\n{{else}} TO BE RESOLVED{{end -}}"
+                    }
+                },
+                {
+                    "tag": "hr"
+                },
+                {{ end }}
+                
+                {
+                  "tag": "note",
+                  "elements": 
+                  [{
+                    "tag": "lark_md",
+                    "content": "**Please fix it asap**\t"
+                  }]
+                }
+                {{- /* en_us end*/ -}}
+            ],
+            "zh_cn": [
+
+                {{- /* zh_cn start*/ -}}
+                 {
+                     "tag": "div",
+                     "text": {
+                         "tag": "lark_md",
+                         "content": "**报警服务器总览**\n{{ range $key, $value := .AlertHosts }}[{{ $key }}] : {{ $value }}\n{{ end }}"
+                     }
+                 },
+                 {
+                     "tag": "hr"
+                 },
+                 {{range .FiringAlerts}}
+                 {
+                     "tag": "div",
+                     "text": {
+                         "tag": "lark_md",
+                         "content": "{{if in .Labels "severity"}}**告警级别 : **{{.Labels.severity}}\n{{end}}{{if in .Labels "hostname"}}**主机名 : **{{.Labels.hostname}} {{end}}\n{{if in .Labels "instance"}}**实例名 : **{{.Labels.instance}} \n{{end}}{{if in .Labels "alertname"}}**告警名 : **{{.Labels.alertname}} \n{{end}}{{if in .Annotations "alertmsg"}}**摘要 : **{{.Annotations.alertmsg}} \n{{end}}{{if isNonZeroDate .StartsAt}}**开始 : **{{date .StartsAt "Asia/Shanghai" }}\n{{end -}}{{- if isNonZeroDate .EndsAt}}**结束 : **{{date .EndsAt "Asia/Shanghai"}}\n{{else}} TO BE RESOLVED{{end -}}"
+                     }
+                 },
+                 {
+                     "tag": "hr"
+                 },
+                 {{ end }}
+                 {{ range .ResolvedAlerts }}
+                 {
+                     "tag": "div",
+                     "text": {
+                         "tag": "lark_md",
+                         "content": "{{if in .Labels "severity"}}**告警级别 : **{{.Labels.severity}}\n{{end}}{{if in .Labels "hostname"}}**主机名 : **{{.Labels.hostname}} {{end}}\n{{if in .Labels "instance"}}**实例名 : **{{.Labels.instance}} \n{{end}}{{if in .Labels "alertname"}}**告警名 : **{{.Labels.alertname}} \n{{end}}{{if in .Annotations "alertmsg"}}**摘要 : **{{.Annotations.alertmsg}} \n{{end}}{{if isNonZeroDate .StartsAt}}**开始 : **{{date .StartsAt "Asia/Shanghai" }}\n{{end -}}{{- if isNonZeroDate .EndsAt}}**结束 : **{{date .EndsAt "Asia/Shanghai"}}\n{{else}} TO BE RESOLVED{{end -}}"
+                     }
+                 },
+                 {
+                     "tag": "hr"
+                 },
+                 {{ end }}
+                 
+                 {
+                   "tag": "note",
+                   "elements": 
+                   [{
+                     "tag": "lark_md",
+                     "content": "**请尽快通知相关人员，并尽快解决问题**\t"
+                   }]
+                 }
+                 {{- /* zh_cn end*/ -}}
+            ]
+        }
+
+    }
+}
